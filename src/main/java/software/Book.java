@@ -5,7 +5,7 @@ public class Book {
 	private String title;
 	private String author;
 	private String signature;
-	private String ISBN;
+	private String isbn;
 
 	public String getTitle() {
 		return title;
@@ -32,30 +32,30 @@ public class Book {
 	}
 
 	public String getISBN() {
-		return ISBN;
+		return isbn;
 	}
 
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setISBN(String isbn) {
+		isbn = isbn;
 	}
 
 	public Book() {
-		this.ISBN = "";
+		this.isbn = "";
 		this.title = "";
 		this.author = "";
 		this.signature = "";
 	}
 
-	public Book(String title, String author, String signature, String ISBN) {
+	public Book(String title, String author, String signature, String isbn) {
 		this.title = title;
 		this.author = author;
 		this.signature = signature;
-		this.ISBN = ISBN;
+		this.isbn = isbn;
 
 	}
 
 	public String toString() {
-		return ("Title: " + title + "\t" + "Author: " + author + "\t" + "ISBN: " + ISBN + "\t" + "Signature: "
+		return ("Title: " + title + "\t" + "Author: " + author + "\t" + "ISBN: " + isbn + "\t" + "Signature: "
 				+ signature);
 	}
 }
