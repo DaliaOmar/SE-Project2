@@ -8,7 +8,8 @@ import io.cucumber.java.en.When;
 
 public class addBookSteps {
 	boolean login=false;
-	Book books = new Book(null, null, null, null);
+	//Book books = new Book(null, null, null, null);
+	Book book;
 	ArrayList<Book> list = new ArrayList<Book>();
 
 	@Given("Admin is logged in and want to add book")
@@ -22,14 +23,17 @@ public class addBookSteps {
 		String author=string2;
 		String signature=string3;
 		String ISBN=string4; 
-		list.add(books);	}
+		 book=new Book(title,author,ISBN,signature);
+		list.add(book);
+		
+	}
 
 
 	@Then("admin should see the book added in book part")
 	public void admin_should_see_the_book_added_in_book_part() {
 
-		for (Book admin_should_see_the_book_added_in_book_part : list) {
-			System.out.println(books.toString());
+		for (Book b : list) {
+			System.out.println(b.toString());
 		}
 
 	}
