@@ -184,7 +184,7 @@ public class searchSteps {
 		public void theSearchesNotMentionedInTheResultsAndMessageDisplayedWithNotFoundAnyThing() {
 		if (!not) {
 			System.out.println("Book is not exist");	
-			assertEquals(b,false);
+			assertEquals(false,b);
 		}
 		}
 
@@ -211,7 +211,7 @@ public class searchSteps {
 		if(authorMm.contains(authorMore)) {
 			flag=true;
 		}
-		assertEquals(flag,true);
+		assertEquals(true,flag);
 	}
 }
 	
