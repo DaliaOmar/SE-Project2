@@ -11,6 +11,7 @@ Feature: Search book
     Examples: 
       | title   |
       | "Life " |
+      | "dalia" |
 
   @searchAuther
   Scenario Outline: Searching for a substring of the author
@@ -20,6 +21,7 @@ Feature: Search book
     Examples: 
       | auther   |
       | "Sister" |
+      | "author" |
 
   @searchIsbn
   Scenario Outline: Searching for a substring of the ISBN
@@ -29,6 +31,7 @@ Feature: Search book
     Examples: 
       | ISBN   |
       | "1982" |
+      | "123"  |
 
   @searchWhenLogin
   Scenario Outline: 
@@ -36,18 +39,20 @@ Feature: Search book
     Then A list of books that match spscification should be returned and printed on screen3
 
     Examples: 
-      | book       |
-      | "A Deeper" |
+      | book          |
+      | "A Deeper"    |
+      | "Sister"      |
+      | "1982"        |
+      | "martine2021" |
+      |"anyThing"|
 
-  @searchNoResult
-  Scenario Outline: No books match the criteria (substring)
-    When user open store book part and add searches for book with thing <input>
-    Then the searches not mentioned in the results and message displayed with not found any thing
-
-    Examples: 
-      | input  |
-      | "Roaa" |
-
+  # @searchNoResult
+  #Scenario Outline: No books match the criteria (substring)
+  # When user open store book part and add searches for book with thing <input>
+  # Then the searches not mentioned in the results and message displayed with not found any thing
+  #Examples:
+  # | input  |
+  #| "Roaa" |
   @searchMore
   Scenario Outline: Find more than one book
     When Admin open book part and add   author on search box <author>

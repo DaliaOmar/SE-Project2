@@ -25,7 +25,7 @@ public class searchSteps {
 	public void user_open_store_book_and_searches_for_a_book_with_title(String string){
 		String searchedTitle=string;
 		for (int i = 0; i < title.length; i++) {
-			if (title[i].contains(searchedTitle)) {
+			if (findd(title,searchedTitle, i)) {
 				r = i;
 				b = true;
 				rA=title[i];
@@ -40,14 +40,19 @@ public class searchSteps {
 		assertEquals(rA,raa);
 		System.out.println("Title: " + title [r] + "\t" + "Author: " + author [r] + "\t" + "ISBN: " + ISBN [r] + "\t" + "Signature: "
 				+ signature [r]);
-	}}
+	}
+	else {
+		System.out.println("Book is not exist");	
+		assertEquals(false,b);
+		}
+	}
 
 
 	@When("user open store book and searches for book with auther {string}")
 	public void user_open_store_book_and_searches_for_book_with_auther(String string) {
 		String searchedAuthor =string;
 		for (int i = 0; i < title.length; i++) {
-			if (author[i].contains(searchedAuthor)) {
+			if (findd(author,searchedAuthor, i)) {
 				r = i;
 				b = true;
 				rA=author[i];
@@ -65,13 +70,17 @@ public class searchSteps {
 			System.out.println("Title: " + title [r] + "\t" + "Author: " + author [r] + "\t" + "ISBN: " + ISBN [r] + "\t" + "Signature: "
 					+ signature [r]);
 		}
+		else {
+			System.out.println("Book is not exist");	
+			assertEquals(false,b);
+			}
 	}
 
 	@When("user open store book part and searches for book with ISBN {string}")
 	public void user_open_store_book_part_and_searches_for_book_with_ISBN(String string) {
 	String searchedIsbn =string;
 	for (int j = 0; j < title.length; j++) {
-		if (ISBN [j].contains(searchedIsbn)) {
+		if (findd(ISBN,searchedIsbn, j)) {
 			r = j;
 			b = true;
 			rA=ISBN[j];
@@ -87,7 +96,13 @@ public class searchSteps {
 			assertEquals(rA,ii);
 			System.out.println("Title: " + title [r] + "\t" + "Author: " + author [r] + "\t" + "ISBN: " + ISBN [r] + "\t" + "Signature: "
 					+ signature [r]);
-		}}
+		}
+		else {
+			System.out.println("Book is not exist");	
+			assertEquals(false,b);
+			}
+	}
+	
 	
 	@When("user logedin and open store book part and searches any thing {string}")
 		public void userLogedinAndOpenStoreBookPartAndSearchesAnyThing(String string) {
@@ -95,7 +110,7 @@ public class searchSteps {
 		login=true;
         String book=string;
 		for (int i = 0; i < title.length; i++) {
-			if (title[i].contains(book)) {
+			if (findd(title,book, i)) {
 				r = i ;
 				b = true;
 				rA=title[i];
@@ -103,7 +118,7 @@ public class searchSteps {
 		}
 		
 		for (int i = 0; i < title.length; i++) {
-			if (author[i].contains(book)) {
+			if (findd(author,book, i)) {
 				r = i ;
 				b1 = true;
 				rA=author[i];
@@ -111,7 +126,7 @@ public class searchSteps {
 		}
 		 b2 = false ;
 		for (int j = 0; j < title.length; j++) {
-			if (ISBN[j].contains(book)) {
+			if (findd(ISBN,book, j)) {
 				r = j ;
 				b2 = true;
 				rA=ISBN[j];
@@ -119,13 +134,13 @@ public class searchSteps {
 		}
 		 b3 = false ;
 		for (int i = 0; i < title.length; i++) {
-			if (signature[i].contains(book)) {
+			if (findd(signature,book, i)) {
 				r = i ;
 				b3 = true;
 				rA=signature[i];
 			}
 		}
-		
+		if (b || b1 || b2 || b3) not = true;
 		}
 
 
@@ -137,60 +152,24 @@ public class searchSteps {
 			else if (b2) s= ISBN [r];
 			else if (b3) s=signature[r];
 			
+			if (!not) {
+				System.out.println("Book is not exist");	
+				assertEquals(false,b);
+			}
+			else {
 			assertEquals(rA,s);
 			System.out.println("Title: " + title [r] + "\t" + "Author: " + author [r] + "\t" + "ISBN: " + ISBN [r] + "\t" + "Signature: "
 						+ signature [r]);
 			
-		}
-
-
-
-	
-	
-
-
-	@When("user open store book part and add searches for book with thing {string}")
-	public  void user_open_store_book_part_and_add_searches_for_book_with_thing(String string) {
-		String notFound=string;
-		for (int i = 0; i < title.length; i++) {
-			if (title[i].contains(notFound)) {
-				b = true;
-				
 			}
-		}
-		
-		for (int i = 0; i < title.length; i++) {
-			if (author[i].contains(notFound)) {
-				b1 = true;
-				
-			}
-		}
-		
-		for (int j = 0; j < title.length; j++) {
-			if (ISBN[j].contains(notFound)) {
-				b2 = true;
-			}
-		}
-		
-		for (int i = 0; i < title.length; i++) {
-			if (signature[i].contains(notFound)) {
-				b3 = true;
-			}
-		}
-		
-		if (b || b1 || b2 || b3) not = true ;		
-	}
-	@Then("the searches not mentioned in the results and message displayed with not found any thing")
-		public void theSearchesNotMentionedInTheResultsAndMessageDisplayedWithNotFoundAnyThing() {
-		if (!not) {
-			System.out.println("Book is not exist");	
-			assertEquals(false,b);
-		}
 		}
 
 
 	
-
+		private boolean findd(String[]a,String notFound,int i) {
+			return a[i].contains(notFound);
+		}
+		
 	@When("Admin open book part and add   author on search box {string}")
 	public void admin_open_book_part_and_add_author_on_search_box(String string) {
 		authorMore=string;
